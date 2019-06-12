@@ -13,7 +13,9 @@ const getCard = (request, response) => {
       response.status(400).send('Table not found')
       throw error
     }
-    response.status(200).json(results.rows)
+    else{
+      response.status(200).json(results.rows)
+    }
   })
 }
 
@@ -23,7 +25,9 @@ const getTerminal = (request, response) => {
       response.status(400).send('Table not found')
       throw error
     }
-    response.status(200).json(results.rows)
+    else{
+      response.status(200).json(results.rows)
+    }
   })
 }
 
@@ -32,10 +36,12 @@ const getCardById = (request, response) => {
 
   pool.query('SELECT * FROM card WHERE card_id = $1', [id], (error, results) => {
     if (error) {
-      response.status(400).send('Id not found')
+      //response.status(400).send('Id not found')
       throw error
     }
-    response.status(200).json(results.rows)
+    else{
+      response.status(200).json(results.rows)
+    }
   })
 }
 
@@ -47,7 +53,9 @@ const getTerminalById = (request, response) => {
       response.status(400).send('Id not found')
       throw error
     }
-    response.status(200).json(results.rows)
+    else{
+      response.status(200).json(results.rows)
+    }
   })
 }
 
@@ -59,7 +67,9 @@ const createCard = (request, response) => {
       response.status(400).send('Failed to create')
       throw error
     }
-    response.status(201).send(`Card added`)
+    else{
+      response.status(201).send(`Card added`)
+    }
   })
 }
 
@@ -71,7 +81,9 @@ const createTerminal = (request, response) => {
       response.status(400).send('Failed to create')
       throw error
     }
-    response.status(201).send(`Room added`)
+    else{
+      response.status(201).send(`Room added`)
+    }
   })
 }
 
@@ -83,7 +95,9 @@ const deleteCard = (request, response) => {
       response.status(400).send('Id not found')
       throw error
     }
-    response.status(200).send(`Card deleted with ID: ${id}`)
+    else{
+      response.status(200).send(`Card deleted with ID: ${id}`)
+    }
   })
 }
 
@@ -95,7 +109,9 @@ const deleteTerminal = (request, response) => {
       response.status(400).send('Id not found')
       throw error
     }
-    response.status(200).send(`Room deleted with ID: ${id}`)
+    else{
+      response.status(200).send(`Room deleted with ID: ${id}`)
+    }
   })
 }
 
