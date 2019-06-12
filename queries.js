@@ -10,7 +10,6 @@ const pool = new Pool({
 const getCard = (request, response) => {
   pool.query('SELECT * FROM card ORDER BY card_id ASC', (error, results) => {
     if (error) {
-      response.status(400).send('Table not found')
       throw error
     }
     else{
@@ -22,7 +21,6 @@ const getCard = (request, response) => {
 const getTerminal = (request, response) => {
   pool.query('SELECT * FROM terminal ORDER BY terminal_id ASC', (error, results) => {
     if (error) {
-      response.status(400).send('Table not found')
       throw error
     }
     else{
@@ -36,7 +34,6 @@ const getCardById = (request, response) => {
 
   pool.query('SELECT * FROM card WHERE card_id = $1', [id], (error, results) => {
     if (error) {
-      //response.status(400).send('Id not found')
       throw error
     }
     else{
@@ -50,7 +47,6 @@ const getTerminalById = (request, response) => {
 
   pool.query('SELECT * FROM terminal WHERE terminal_id = $1', [id], (error, results) => {
     if (error) {
-      response.status(400).send('Id not found')
       throw error
     }
     else{
