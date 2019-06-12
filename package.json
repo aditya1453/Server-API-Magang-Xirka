@@ -1,0 +1,20 @@
+{
+  "name": "xirka",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dimasyoga/xirka.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dimasyoga/xirka/issues"
+  },
+  "homepage": "https://github.com/Dimasyoga/xirka#readme"
+}

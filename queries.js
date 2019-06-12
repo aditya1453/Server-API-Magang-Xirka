@@ -2,8 +2,8 @@ const Pool = require('pg').Pool
 const pool = new Pool({
   user: 'xirka',
   host: 'localhost',
-  database: 'xirkadb',
-  password: 'xirka',
+  database: 'magangdb',
+  password: 'bandung',
   port: 5432,
 })
 
@@ -48,9 +48,9 @@ const getTerminalById = (request, response) => {
 }
 
 const createCard = (request, response) => {
-  const { card_id, nim, nama, instansi } = request.body
+  const { card_id, nim, name, instansi } = request.body
 
-  pool.query('INSERT INTO card (card_id, nim, nama, instansi) VALUES ($1, $2, $3, $4)', [card_id, nim, nama, instansi], (error, results) => {
+  pool.query('INSERT INTO card (card_id, nim, name, instansi) VALUES ($1, $2, $3, $4)', [card_id, nim, name, instansi], (error, results) => {
     if (error) {
       throw error
     }
@@ -59,9 +59,9 @@ const createCard = (request, response) => {
 }
 
 const createTerminal = (request, response) => {
-  const { terminal_id, ruang, instansi } = request.body
+  const { terminal_id, room, instansi } = request.body
 
-  pool.query('INSERT INTO terminal (terminal_id, ruang, instansi) VALUES ($1, $2, $3)', [terminal_id, ruang, instansi], (error, results) => {
+  pool.query('INSERT INTO terminal (terminal_id, room, instansi) VALUES ($1, $2, $3)', [terminal_id, room, instansi], (error, results) => {
     if (error) {
       throw error
     }
