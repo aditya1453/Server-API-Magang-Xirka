@@ -5,6 +5,8 @@ const pool = new Pool({
   database: 'magangdb',
   password: 'bandung',
   port: 5432,
+  max: 10, // max number of clients in the pool
+  idleTimeoutMillis: 10000
 })
 
 const getCard = (request, response) => {
