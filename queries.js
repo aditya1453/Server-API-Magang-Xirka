@@ -12,7 +12,8 @@ const pool = new Pool({
 const getCard = (request, response) => {
   pool.query('SELECT * FROM card ORDER BY card_id ASC', (error, results) => {
     if (error) {
-      throw error
+      response.status(400).send('Failed to GET')
+      console.log('getCard failed')
     }
     else{
       response.status(200).json(results.rows)
@@ -23,7 +24,8 @@ const getCard = (request, response) => {
 const getTerminal = (request, response) => {
   pool.query('SELECT * FROM terminal ORDER BY terminal_id ASC', (error, results) => {
     if (error) {
-      throw error
+      response.status(400).send('Failed to GET')
+      console.log('getTerminal failed')
     }
     else{
       response.status(200).json(results.rows)
@@ -36,7 +38,8 @@ const getCardById = (request, response) => {
 
   pool.query('SELECT * FROM card WHERE card_id = $1', [id], (error, results) => {
     if (error) {
-      throw error
+      response.status(400).send('Failed to GET by ID')
+      console.log('getCardById failed')
     }
     else{
       response.status(200).json(results.rows)
@@ -49,7 +52,8 @@ const getTerminalById = (request, response) => {
 
   pool.query('SELECT * FROM terminal WHERE terminal_id = $1', [id], (error, results) => {
     if (error) {
-      throw error
+      response.status(400).send('Failed to GET by ID')
+      console.log('getTerminalById failed')
     }
     else{
       response.status(200).json(results.rows)
@@ -63,7 +67,7 @@ const createCard = (request, response) => {
   pool.query('INSERT INTO card (card_id, nim, name, instansi) VALUES ($1, $2, $3, $4)', [card_id, nim, name, instansi], (error, results) => {
     if (error) {
       response.status(400).send('Failed to create')
-      throw error
+      console.log('createCard failed')
     }
     else{
       response.status(201).send(`Card added`)
@@ -77,7 +81,7 @@ const createTerminal = (request, response) => {
   pool.query('INSERT INTO terminal (terminal_id, room, instansi) VALUES ($1, $2, $3)', [terminal_id, room, instansi], (error, results) => {
     if (error) {
       response.status(400).send('Failed to create')
-      throw error
+      console.log('createTerminal failed')
     }
     else{
       response.status(201).send(`Room added`)
@@ -90,11 +94,12 @@ const updateCard = (request, response) => {
   const { card_id, nim, name, instansi } = request.body
 
   pool.query(
-    'UPDATE card SET card_id = $1, nim = $2, name = $3, instansi = $4 WHERE id = $5',
-    [card_id, nim, name, instansi, id],
+    'UPDATE card SET nim = $1, name = $2, instansi = $3 WHERE card_id = $4',
+    [nim, name, instansi, card_id],
     (error, results) => {
       if (error) {
-        throw error
+        response.status(400).send('Failed to update')
+        console.log('updateCard failed')
       }
       response.status(200).send(`Card modified with ID: ${id}`)
     }
@@ -106,11 +111,12 @@ const updateTerminal = (request, response) => {
   const { terminal_id, room, instansi } = request.body
 
   pool.query(
-    'UPDATE terminal SET terminal_id = $1, room = $2, instansi = $3 WHERE id = $4',
-    [terminal_id, room, instansi, id],
+    'UPDATE terminal SET room = $1, instansi = $2 WHERE terminal_id = $3',
+    [room, instansi, id],
     (error, results) => {
       if (error) {
-        throw error
+        response.status(400).send('Failed to update')
+        console.log('updateTerminal failed')
       }
       else{
         response.status(200).send(`Room modified with ID: ${id}`)
@@ -124,8 +130,8 @@ const deleteCard = (request, response) => {
 
   pool.query('DELETE FROM card WHERE card_id = $1', [id], (error, results) => {
     if (error) {
-      response.status(400).send('Id not found')
-      throw error
+      response.status(400).send('Failed to delete')
+      console.log('deleteCard failed')
     }
     else{
       response.status(200).send(`Card deleted with ID: ${id}`)
@@ -138,8 +144,8 @@ const deleteTerminal = (request, response) => {
 
   pool.query('DELETE FROM terminal WHERE terminal_id = $1', [id], (error, results) => {
     if (error) {
-      response.status(400).send('Id not found')
-      throw error
+      response.status(400).send('Failed to delete')
+      console.log('deleteTerminal failed')
     }
     else{
       response.status(200).send(`Room deleted with ID: ${id}`)
