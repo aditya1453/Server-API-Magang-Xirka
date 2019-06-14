@@ -6,7 +6,7 @@ const pool = new Pool({
   password: 'bandung',
   port: 5432,
   max: 10, // max number of clients in the pool
-  idleTimeoutMillis: 10000
+  idleTimeoutMillis: 5000
 })
 
 const getCard = (request, response) => {
@@ -78,7 +78,8 @@ const createCard = (request, response) => {
 const createTerminal = (request, response) => {
   const { terminal_id, room, instansi } = request.body
 
-  pool.query('INSERT INTO terminal (terminal_id, room, instansi) VALUES ($1, $2, $3)', [terminal_id, room, instansi], (error, results) => {
+  pool.query('INSERT INTO terminal (terminal_id, room, instansi) VALUES ($1, $2, $3)',
+    [terminal_id, room, instansi], (error, results) => {
     if (error) {
       response.status(400).send('Failed to create')
       console.log('createTerminal failed')
@@ -91,27 +92,29 @@ const createTerminal = (request, response) => {
 
 const updateCard = (request, response) => {
   const id = parseInt(request.params.id)
-  const { card_id, nim, name, instansi } = request.body
+  const { nim, name, instansi } = request.body
 
   pool.query(
-    'UPDATE card SET nim = $1, name = $2, instansi = $3 WHERE card_id = $4',
-    [nim, name, instansi, card_id],
+    'UPDATE card set nim=($1), name=($2), instansi=($3) WHERE card_id=($4)',
+    [nim, name, instansi, id],
     (error, results) => {
       if (error) {
         response.status(400).send('Failed to update')
         console.log('updateCard failed')
       }
-      response.status(200).send(`Card modified with ID: ${id}`)
+      else{
+          response.status(200).send(`Card modified with ID: ${id}`)
+      }
     }
   )
 }
 
 const updateTerminal = (request, response) => {
   const id = parseInt(request.params.id)
-  const { terminal_id, room, instansi } = request.body
+  const { room, instansi } = request.body
 
   pool.query(
-    'UPDATE terminal SET room = $1, instansi = $2 WHERE terminal_id = $3',
+    'UPDATE terminal SET room = ($1), instansi = ($2) WHERE terminal_id = ($3)',
     [room, instansi, id],
     (error, results) => {
       if (error) {
