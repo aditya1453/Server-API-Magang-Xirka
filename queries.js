@@ -85,6 +85,40 @@ const createTerminal = (request, response) => {
   })
 }
 
+const updateCard = (request, response) => {
+  const id = parseInt(request.params.id)
+  const { card_id, nim, name, instansi } = request.body
+
+  pool.query(
+    'UPDATE card SET card_id = $1, nim = $2, name = $3, instansi = $4 WHERE id = $5',
+    [card_id, nim, name, instansi, id],
+    (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).send(`Card modified with ID: ${id}`)
+    }
+  )
+}
+
+const updateTerminal = (request, response) => {
+  const id = parseInt(request.params.id)
+  const { terminal_id, room, instansi } = request.body
+
+  pool.query(
+    'UPDATE terminal SET terminal_id = $1, room = $2, instansi = $3 WHERE id = $4',
+    [terminal_id, room, instansi, id],
+    (error, results) => {
+      if (error) {
+        throw error
+      }
+      else{
+        response.status(200).send(`Room modified with ID: ${id}`)
+      }
+    }
+  )
+}
+
 const deleteCard = (request, response) => {
   const id = parseInt(request.params.id)
 
@@ -117,9 +151,11 @@ module.exports = {
   getCard,
   getCardById,
   createCard,
+  updateCard,
   deleteCard,
   getTerminal,
   getTerminalById,
   createTerminal,
+  updateTerminal,
   deleteTerminal,
 }
