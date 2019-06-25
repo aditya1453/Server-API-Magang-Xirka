@@ -70,7 +70,7 @@ const createCard = (request, response) => {
       console.log('createCard failed')
     }
     else{
-      response.status(201).send()
+      response.status(201).send('Card added')
     }
   })
 }
