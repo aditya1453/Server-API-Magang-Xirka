@@ -24,6 +24,7 @@ router.post('/login', (req, res, next) => {
         { expiresIn: '1h' // expires in 1 hours
         }
       );
+      console.log('New token auth')
       // return the JWT token for the future API calls
       res.json({
         success: true,
@@ -31,12 +32,14 @@ router.post('/login', (req, res, next) => {
         token: token
       });
     } else {
+      console.log('Login failed')
       res.send(403).json({
         success: false,
         message: 'Incorrect username or password'
       });
     }
   } else {
+    console.log('Login failed')
     res.send(400).json({
       success: false,
       message: 'Authentication failed! Please check the request'

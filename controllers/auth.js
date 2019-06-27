@@ -13,6 +13,7 @@ let checkToken = (req, res, next) => {
 
     jwt.verify(token, config.secret, (err, decoded) => {
       if (err) {
+        console.log('Token not valid');
         return res.json({
           success: false,
           message: 'Token is not valid'
@@ -23,6 +24,7 @@ let checkToken = (req, res, next) => {
       }
     });
   } else {
+    console.log('no Auth token');
     return res.json({
       success: false,
       message: 'Auth token is not supplied'
