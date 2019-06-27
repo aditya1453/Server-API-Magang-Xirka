@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const db = require('./server/queries')
+const path = require('path');
+const db = require(path.join(__dirname,'..','controllers','queries'))
+const auth = require(path.join(__dirname,'..','controllers','auth'))
 
 /* routes /terminal */
-router.get('/', db.getTerminal);
-router.get('/:id', db.getTerminalById);
-router.post('/', db.createTerminal);
-router.put('/:id', db.updateTerminal);
-router.delete('/:id', db.deleteTerminal);
+router.get('/', auth.checkToken, db.getTerminal);
+router.get('/:id', auth.checkToken, db.getTerminalById);
+router.post('/', auth.checkToken,db.createTerminal);
+router.put('/:id', auth.checkToken, db.updateTerminal);
+router.delete('/:id', auth.checkToken, db.deleteTerminal);
 
 module.exports = router;

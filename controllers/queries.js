@@ -4,8 +4,8 @@ const path = require('path');
 const pool = new Pool({
   user: 'xirka',
   host: 'localhost',
-  database: 'api',
-  password: 'xirka',
+  database: 'magangdb',
+  password: 'bandung',
   port: 5432,
   max: 10, // max number of clients in the pool
   idleTimeoutMillis: 5000

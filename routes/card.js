@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const db = require('./server/queries')
+const path = require('path');
+const db = require(path.join(__dirname,'..','controllers','queries'))
+const auth = require(path.join(__dirname,'..','controllers','auth'))
 
 /* routes /card */
-router.get('/', db.getCard);
-router.get('/:id', db.getCardById);
-router.post('/', db.createCard);
-router.put('/:id', db.updateCard);
-router.delete('/:id', db.deleteCard);
+router.get('/', auth.checkToken, db.getCard);
+router.get('/:id', auth.checkToken, db.getCardById);
+router.post('/', auth.checkToken, db.createCard);
+router.put('/:id', auth.checkToken, db.updateCard);
+router.delete('/:id', auth.checkToken, db.deleteCard);
 
 module.exports = router;
