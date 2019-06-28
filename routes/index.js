@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
-const config = require(path.join(__dirname,'..','config'));
+const db = require(path.join(__dirname,'..','controllers','queries'))
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
+
+router.get('/view', db.direct_getCard);
 
 router.get('/login', (req, res, next) => {
   res.render('login')
@@ -18,8 +19,8 @@ router.post('/login', (req, res, next) => {
   var username = req.body.username;
   var password = req.body.password;
   // For the given username fetch user from DB
-  var mockedUsername = 'admin';
-  var mockedPassword = 'bandung123';
+  var mockedUsername = config.username_login
+  var mockedPassword = config.password_login
 
   if (username && password) {
     if (username === mockedUsername && password === mockedPassword) {

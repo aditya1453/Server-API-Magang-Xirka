@@ -1,15 +1,27 @@
-const Pool = require('pg').Pool
 const path = require('path');
+const config = require(path.join(__dirname,'..','config'));
+const Pool = require('pg').Pool
 
 const pool = new Pool({
-  user: 'xirka',
-  host: 'localhost',
-  database: 'magangdb',
-  password: 'bandung',
-  port: 5432,
-  max: 10, // max number of clients in the pool
-  idleTimeoutMillis: 5000
+  user: config.user,
+  host: config.host,
+  database: config.database,
+  password: config.password,
+  port: config.port,
+  max: config.max,
+  idleTimeoutMillis: config.idleTimeoutMillis
 })
+
+const direct_getCard = (request, response) => {
+  pool.query('SELECT * FROM card ORDER BY card_id ASC', (error, results) => {
+    if (error) {
+      console.log('getCard failed')
+    }
+    else{
+      response.render('view', {data : results.rows});
+    }
+  })
+}
 
 const getCard = (request, response) => {
   pool.query('SELECT * FROM card ORDER BY card_id ASC', (error, results) => {
@@ -173,4 +185,5 @@ module.exports = {
   createTerminal,
   updateTerminal,
   deleteTerminal,
+  direct_getCard
 }
