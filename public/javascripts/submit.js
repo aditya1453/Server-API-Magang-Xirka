@@ -9,10 +9,10 @@ $(function()
         
         $.ajax({
             type: "POST",
-            url: 'http://localhost:3000/submit',
+            url: 'http://192.168.2.7:3000/submit',
             data: $form.serialize(),
             success: function (response) {
-                window.location = "http://localhost:3000/view";
+                window.location = "http://192.168.2.7:3000/view";
             },
             dataType: 'json' 
         });    
