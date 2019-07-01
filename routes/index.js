@@ -11,6 +11,12 @@ router.get('/', function(req, res, next) {
 
 router.get('/view', db.direct_getCard);
 
+router.get('/submit', (req, res, next) => {
+  res.render('submit')
+})
+
+router.post('/submit', db.direct_createCard)
+
 router.get('/login', (req, res, next) => {
   res.render('login')
 })

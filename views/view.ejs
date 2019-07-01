@@ -15,33 +15,43 @@
                 <link href="stylesheets/css/style.css" rel="stylesheet">
                 <!-- MDBootstrap Datatables  -->
                 <link href="stylesheets/css/addons/datatables.min.css" rel="stylesheet">
+                <link href="stylesheets/view-style.css" rel="stylesheet">
+
         </head>
     <body>
         <div>
-            <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-                <thead>
-                    <tr>
-                        <th class="th-sm">card_id
-                        </th>
-                        <th class="th-sm">nim
-                        </th>
-                        <th class="th-sm">name
-                        </th>
-                        <th class="th-sm">instansi
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                        <% for (var i = 0; i < data.length; i++) { %>
-                            <tr>
-                                <td><%= data[i].card_id %></td>
-                                <td><%= data[i].nim %></td>
-                                <td><%= data[i].name %></td>
-                                <td><%= data[i].instansi %></td>
-                            </tr>    
-                        <% } %>
-                </tbody>
-            </table>
+            <div class="content">
+                    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th class="th-sm">card_id
+                                    </th>
+                                    <th class="th-sm">nim
+                                    </th>
+                                    <th class="th-sm">name
+                                    </th>
+                                    <th class="th-sm">instansi
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <% for (var i = 0; i < data.length; i++) { %>
+                                        <tr>
+                                            <td><%= data[i].card_id %></td>
+                                            <td><%= data[i].nim %></td>
+                                            <td><%= data[i].name %></td>
+                                            <td><%= data[i].instansi %></td>
+                                        </tr>    
+                                    <% } %>
+                            </tbody>
+                        </table>
+            </div>
+        </div>
+            
+        <div class="footer">
+            <button id="but" class="but">
+                Submit
+            </button>
         </div>
         
         <!-- SCRIPTS -->
@@ -61,5 +71,13 @@
             $('.dataTables_length').addClass('bs-select');
             });
         </script>
+
+        <script type="text/javascript">
+            document.getElementById("but").onclick = function () {
+                location.href = "http://localhost:3000/submit";
+            };
+        </script>
+
+
     </body>
 </html>

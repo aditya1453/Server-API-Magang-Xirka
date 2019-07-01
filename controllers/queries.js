@@ -23,6 +23,19 @@ const direct_getCard = (request, response) => {
   })
 }
 
+const direct_createCard = (request, response) => {
+  const { card_id, nim, name, instansi } = request.body
+
+  pool.query('INSERT INTO card (card_id, nim, name, instansi) VALUES ($1, $2, $3, $4)', [card_id, nim, name, instansi], (error, results) => {
+    if (error) {
+      console.log('createCard failed')
+    }
+    else{
+      response.status(200).send({"redirect":true,"redirect_url":"http://192.168.2.7:3000/view"})
+    }
+  })
+}
+
 const getCard = (request, response) => {
   pool.query('SELECT * FROM card ORDER BY card_id ASC', (error, results) => {
     if (error) {
@@ -84,7 +97,7 @@ const createCard = (request, response) => {
       console.log('createCard failed')
     }
     else{
-      response.status(201).send('Card added')
+      response.status(201).send('Card Added')
     }
   })
 }
@@ -185,5 +198,6 @@ module.exports = {
   createTerminal,
   updateTerminal,
   deleteTerminal,
-  direct_getCard
+  direct_getCard,
+  direct_createCard
 }
