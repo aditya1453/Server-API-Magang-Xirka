@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const db = require(path.join(__dirname,'..','controllers','queries'))
+const config = require(path.join(__dirname,'..','config'));
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
