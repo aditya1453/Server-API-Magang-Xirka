@@ -37,7 +37,7 @@ const direct_createCard = (request, response) => {
 }
 
 const direct_deleteCard = (request, response) => {
-  const id = parseInt(request.params.card_id)
+  const id = parseInt(request.body.card_id)
 
   pool.query('DELETE FROM card WHERE card_id = $1', [id], (error, results) => {
     if (error) {
