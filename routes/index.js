@@ -18,6 +18,12 @@ router.get('/submit', (req, res, next) => {
 
 router.post('/submit', db.direct_createCard)
 
+router.get('/delete', (req, res, next) => {
+  res.render('delete')
+})
+
+router.post('/delete', db.direct_deleteCard)
+
 router.get('/login', (req, res, next) => {
   res.render('login')
 })

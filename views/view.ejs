@@ -49,8 +49,11 @@
         </div>
             
         <div class="footer">
-            <button id="but" class="but">
+            <button id="submit" class="but">
                 Submit
+            </button>
+            <button id="delete" class="but">
+                Delete
             </button>
         </div>
         
@@ -65,18 +68,8 @@
         <script type="text/javascript" src="javascripts/js/mdb.min.js"></script>
         <!-- MDBootstrap Datatables  -->
         <script type="text/javascript" src="javascripts/js/addons/datatables.min.js"></script>
-        <script>
-            $(document).ready(function () {
-            $('#dtBasicExample').DataTable();
-            $('.dataTables_length').addClass('bs-select');
-            });
-        </script>
-
-        <script type="text/javascript">
-            document.getElementById("but").onclick = function () {
-                location.href = "http://192.168.2.7:3000/submit";
-            };
-        </script>
+        <script type="text/javascript" src="javascripts/view.js"></script>
+        
 
 
     </body>

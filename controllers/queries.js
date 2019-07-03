@@ -36,6 +36,19 @@ const direct_createCard = (request, response) => {
   })
 }
 
+const direct_deleteCard = (request, response) => {
+  const id = parseInt(request.params.id)
+
+  pool.query('DELETE FROM card WHERE card_id = $1', [id], (error, results) => {
+    if (error) {
+      console.log('deleteCard failed')
+    }
+    else{
+      response.status(200).send({"redirect":true,"redirect_url":"http://192.168.2.7:3000/view"})
+    }
+  })
+}
+
 const getCard = (request, response) => {
   pool.query('SELECT * FROM card ORDER BY card_id ASC', (error, results) => {
     if (error) {
@@ -199,5 +212,6 @@ module.exports = {
   updateTerminal,
   deleteTerminal,
   direct_getCard,
-  direct_createCard
+  direct_createCard,
+  direct_deleteCard
 }
