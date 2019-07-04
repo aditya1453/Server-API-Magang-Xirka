@@ -6,6 +6,7 @@ const auth = require(path.join(__dirname,'..','controllers','auth'))
 
 /* routes /card */
 router.options('/', auth.checkToken, db.getCard);
+router.get('/', auth.checkToken, db.getCard);
 router.get('/:id', auth.checkToken, db.getCardById);
 router.post('/', db.createCard);
 router.put('/:id', auth.checkToken, db.updateCard);
