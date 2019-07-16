@@ -5,7 +5,7 @@ module.exports = {
   username_login: 'admin',
   password_login: 'bandung123',
   // server var
-  user: 'xirka',
+  user: 'dim',
   host: 'localhost',
   database: 'magangdb',
   password: 'bandung',

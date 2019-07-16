@@ -37,7 +37,7 @@ const direct_createCard = (request, response) => {
 }
 
 const direct_deleteCard = (request, response) => {
-  const id = parseInt(request.body.card_id)
+  const id = request.body.card_id
 
   pool.query('DELETE FROM card WHERE card_id = $1', [id], (error, results) => {
     if (error) {
@@ -173,7 +173,7 @@ const updateTerminal = (request, response) => {
 }
 
 const deleteCard = (request, response) => {
-  const id = parseInt(request.params.id)
+  const id = request.params.id
 
   pool.query('DELETE FROM card WHERE card_id = $1', [id], (error, results) => {
     if (error) {
@@ -187,7 +187,7 @@ const deleteCard = (request, response) => {
 }
 
 const deleteTerminal = (request, response) => {
-  const id = parseInt(request.params.id)
+  const id = request.params.id
 
   pool.query('DELETE FROM terminal WHERE terminal_id = $1', [id], (error, results) => {
     if (error) {
