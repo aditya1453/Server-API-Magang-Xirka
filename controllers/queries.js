@@ -16,7 +16,12 @@ function isNumeric(num){
   return !isNaN(num)
 }
 
+function removeSpace(str){
+  return str.replace(/\s+/g, '')
+}
+
 const direct_getCard = (request, response) => {
+
   pool.query('SELECT * FROM card ORDER BY card_id ASC', (error, results) => {
     if (error) {
       console.log('getCard failed')
@@ -28,20 +33,27 @@ const direct_getCard = (request, response) => {
 }
 
 const direct_createCard = (request, response) => {
-  const { card_id, nim, name, instansi } = request.body
+  var { card_id, nim, name, instansi } = request.body
 
-  pool.query('INSERT INTO card (card_id, nim, name, instansi) VALUES ($1, $2, $3, $4)', [card_id, nim, name, instansi], (error, results) => {
-    if (error) {
-      console.log('createCard failed')
-    }
-    else{
-      response.status(200).send({"redirect":true,"redirect_url":"http://192.168.2.7:3000/view"})
-    }
-  })
+  card_id = removeSpace(card_id)
+  nim = removeSpace(nim)
+
+  if(isNumeric(card_id) && (isNumeric(nim))){
+    pool.query('INSERT INTO card (card_id, nim, name, instansi) VALUES ($1, $2, $3, $4)', [card_id, nim, name, instansi], (error, results) => {
+      if (error) {
+        console.log('createCard failed')
+      }
+      else{
+        response.status(200).send({"redirect":true,"redirect_url":"http://192.168.2.7:3000/view"})
+      }
+    })
+  }else{
+    console.log('createCard failed, not a number')
+  }
 }
 
 const direct_deleteCard = (request, response) => {
-  const id = request.body.card_id
+  var id = removeSpace(request.body.card_id)
 
   pool.query('DELETE FROM card WHERE card_id = $1', [id], (error, results) => {
     if (error) {
@@ -78,7 +90,7 @@ const getTerminal = (request, response) => {
 }
 
 const getCardById = (request, response) => {
-  const id = request.params.id
+  var id = removeSpace(request.params.id)
 
   if (isNumeric(id)){
     pool.query('SELECT * FROM card WHERE card_id = $1', [id], (error, results) => {
@@ -96,7 +108,7 @@ const getCardById = (request, response) => {
 }
 
 const getTerminalById = (request, response) => {
-  const id = request.params.id
+  var id = removeSpace(request.params.id)
 
   if (isNumeric(id)){
     pool.query('SELECT * FROM terminal WHERE terminal_id = $1', [id], (error, results) => {
@@ -114,7 +126,10 @@ const getTerminalById = (request, response) => {
 }
 
 const createCard = (request, response) => {
-  const { card_id, nim, name, instansi } = request.body
+  var { card_id, nim, name, instansi } = request.body
+
+  card_id = removeSpace(card_id)
+  nim = removeSpace(nim)
 
   if(isNumeric(card_id) && isNumeric(nim)){
     pool.query('INSERT INTO card (card_id, nim, name, instansi) VALUES ($1, $2, $3, $4)', [card_id, nim, name, instansi], (error, results) => {
@@ -132,7 +147,9 @@ const createCard = (request, response) => {
 }
 
 const createTerminal = (request, response) => {
-  const { terminal_id, room, instansi } = request.body
+  var { terminal_id, room, instansi } = request.body
+
+  terminal_id = removeSpace(terminal_id)
 
   if(isNumeric(terminal_id)){
     pool.query('INSERT INTO terminal (terminal_id, room, instansi) VALUES ($1, $2, $3)',
@@ -151,8 +168,10 @@ const createTerminal = (request, response) => {
 }
 
 const updateCard = (request, response) => {
-  const id = request.params.id
-  const { nim, name, instansi } = request.body
+  var id = removeSpace(request.params.id)
+  var { nim, name, instansi } = request.body
+
+  nim = removeSpace(nim)
 
   if (isNumeric(id) && isNumeric(nim)){
     pool.query(
@@ -174,8 +193,8 @@ const updateCard = (request, response) => {
 }
 
 const updateTerminal = (request, response) => {
-  const id = request.params.id
-  const { room, instansi } = request.body
+  var id = removeSpace(request.params.id)
+  var { room, instansi } = request.body
 
   if (isNumeric(id)){
     pool.query(
@@ -197,7 +216,7 @@ const updateTerminal = (request, response) => {
 }
 
 const deleteCard = (request, response) => {
-  const id = request.params.id
+  var id = removeSpace(request.params.id)
 
   if (isNumeric(id)){
     pool.query('DELETE FROM card WHERE card_id = $1', [id], (error, results) => {
@@ -215,7 +234,7 @@ const deleteCard = (request, response) => {
 }
 
 const deleteTerminal = (request, response) => {
-  const id = request.params.id
+  var id = removeSpace(request.params.id)
 
   if (isNumeric(id)){
     pool.query('DELETE FROM terminal WHERE terminal_id = $1', [id], (error, results) => {
