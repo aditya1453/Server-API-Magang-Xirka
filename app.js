@@ -5,6 +5,7 @@ const logger = require('morgan');
 const cors = require('cors');
 
 const indexRouter = require('./routes/index');
+const loginRouter = require('./routes/login');
 const cardRouter = require('./routes/card');
 const terminalRouter = require('./routes/terminal');
 
@@ -27,7 +28,8 @@ app.use(function(req, res, next){
   next()
 })
 
-app.use('/', indexRouter);
+//app.use('/', indexRouter);
+app.use('/login', loginRouter);
 app.use('/card', cardRouter);
 app.use('/terminal', terminalRouter);
 
