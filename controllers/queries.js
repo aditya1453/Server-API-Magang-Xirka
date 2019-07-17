@@ -17,7 +17,7 @@ function isNumeric(num){
 }
 
 function removeSpace(str){
-  return str.replace(/\s+/g, '')
+  return str.trim(str.replace(/\s+/g, ''))
 }
 
 const direct_getCard = (request, response) => {
