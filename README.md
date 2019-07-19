@@ -6,8 +6,8 @@ Repository Pekerjaan KP PT.Xirka Silicon Technology dengan Topik Website SmartLo
 ## Table of Contents
 1. [Prerequisites](#Prerequisites)
 2. [Installation](#Installation)
-    - [Database PostgreSQL](##Database-PostgreSQL)
-    - [Server Node.JS](Server-Node.js)
+    - [Database PostgreSQL](#Database-PostgreSQL)
+    - [Server Node.JS](#Server-Node.js)
 3. [Run Server](#Run-Server)
 4. [API Request](#API-Request)
 5. [Author](#Author)
@@ -64,7 +64,7 @@ $ sudo -i -u <nama user>
 $ psql <nama database>
 ```
 >kemudian akan muncul `<nama database>=#` pada terminal
-4. Buat tabel baru dengan nama card dan terminal menggunakan format seperti [diatas](Database-postgreSQL)
+4. Buat tabel baru dengan nama card dan terminal menggunakan format seperti [diatas](#Database-postgreSQL)
 ```sql
 create table card(
     card_id varchar(30) primary key,
