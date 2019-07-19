@@ -1,42 +1,54 @@
-# xirka
-Repository Pekerjaan KP Xirka Topik Website Smartcard Log - Backend server API
+# API Database Server Xirka SmartLog
+Repository Pekerjaan KP PT.Xirka Silicon Technology dengan Topik Website SmartLog
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisites
+## Table of Contents
+- [Prerequisites](#Prerequisites)
+- [Installation](#Installation)
+- [Run Server](#Run_Server)
+- [API Request](#API_Request)
+- [Author](#Author)
 
-What things you need to install the software and how to install them
-
+## Prerequisites
+- Install PostgreSQL
+```sh
+$ [sudo] apt install postgresql
 ```
-Give examples
+- Install Node.JS and NPM (NodeJS Package Manager)
+```sh
+$ [sudo] apt install nodejs
+$ [sudo] apt install npm
 ```
+## Installation
+### Database PostgreSQL
 
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
+### Server Node.JS
+1. Clone repository ini ke komputer server
+2. Masuk ke directory repository `cd xirka`, kemudian masukkan perintah:
 ```
-Give the example
+$ npm install
 ```
+3. Cek settingan database pada file config.js
 
-And repeat
 
+## Run Server
+Nyalakan server dengan memasukkan perintah `npm start` pada *root directory* repository ini
+> Untuk membuat server menyala di background, dapat digunakan perintah `nohup` ke terminal atau menggunakan modul [forever](https://www.npmjs.com/package/forever)
+### Penggunaan Package Forever
+- Install package dengan perintah:
 ```
-until finished
+$ [sudo] npm install forever -g
 ```
-
-End with an example of getting some data out of the system or using it for a little demo
+- Untuk menjalankan server, masukkan perintah `forever start` ke terminal pada *root directory*
+- Untuk melakukan pengecekan perintah forever yang berjalan, masukkan perintah `forever list` ke terminal dan akan muncul daftar perintah forever yang berjalan
+- Untuk menghentikan semua perintah forever yang berjalan, masukkan perintah `forever stopall` ke terminal
+- Daftar perintah lengkap dapat dilihat di https://www.npmjs.com/package/forever
 
 ## API Request
 
-### Data Structure
-
-### HTTP Methode Request List
-
-## Authors
-
-* **Dimas Yoga** - Email : dimasyogapra@gmail.com
+## Author
+* **Dimas Yoga** 
+Email : dimasyogapra@gmail.com
