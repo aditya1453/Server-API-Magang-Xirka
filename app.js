@@ -22,13 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function(req, res, next){
-  console.log(req.headers)
-  console.log(req.body)
-  next()
-})
-
-//app.use('/', indexRouter);
+app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/card', cardRouter);
 app.use('/terminal', terminalRouter);
