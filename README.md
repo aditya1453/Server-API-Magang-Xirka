@@ -95,16 +95,16 @@ $ npm install
 
 ## Run Server
 Nyalakan server dengan memasukkan perintah `npm start` pada *root directory* repository ini
-> Untuk membuat server menyala di background, dapat digunakan perintah `nohup` ke terminal atau menggunakan modul [forever](https://www.npmjs.com/package/forever)
-### Penggunaan Package Forever
+> Untuk membuat server menyala di background, dapat digunakan perintah `nohup` ke terminal atau menggunakan modul [pm2](https://www.npmjs.com/package/pm2)
+### Penggunaan Package pm2
 - Install package dengan perintah:
 ```sh
-$ [sudo] npm install forever -g
+$ [sudo] npm install pm2 -g
 ```
-- Untuk menjalankan server, masukkan perintah `forever start` ke terminal pada *root directory*
-- Untuk melakukan pengecekan perintah forever yang berjalan, masukkan perintah `forever list` ke terminal dan akan muncul daftar perintah forever yang berjalan
-- Untuk menghentikan semua perintah forever yang berjalan, masukkan perintah `forever stopall` ke terminal
-- Daftar perintah lengkap dapat dilihat di https://www.npmjs.com/package/forever
+- Untuk menjalankan server, masukkan perintah `pm2 start` ke terminal pada *root directory*
+- Untuk melakukan pengecekan perintah pm2 yang berjalan, masukkan perintah `pm2 list` ke terminal dan akan muncul daftar aplikasi yang berjalan
+- Untuk menghentikan semua perintah pm2 yang berjalan, masukkan perintah `pm2 stop all` ke terminal
+- Daftar perintah lengkap dapat dilihat di http://pm2.keymetrics.io/
 
 ## API Request
 Server API ini memiliki 4 fungsi utama untuk modifikasi database, fungsi-fungsi tersebut adalah *Read*, *Create*, *Edit*, dan *Delete*. Keempat fungsi tersebut di jalankan dengan mengirimkan HTTP request yang dapat dilihat pada tabel di bawah
