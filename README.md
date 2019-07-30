@@ -111,17 +111,17 @@ Server API ini memiliki 4 fungsi utama untuk modifikasi database, fungsi-fungsi 
 ### API Request Table
 |Function|Method|URL|Header|Body|Description|
 |:----:|:----:|:-----:|:-----:|:----:|:-----:|
-|Read Card|GET|{server IP}:{port}/card|token||Mengambil semua data pada tabel card|
-|Read Terminal|GET|{server IP}:{port}/terminal|token||Mengambil semua data pada tabel terminal|
-|Read Card by ID|GET|{server IP}:{port}/card/{id}|token||Mengambil satu baris data pada tabel card dengan kolom card_id = id|
-|Read Terminal by ID|GET|{server IP}:{port}/terminal/{id}|token||Mengambil satu baris data pada tabel terminal dengan kolom terminal_id = id|
-|Create Card|POST|{server IP}:{port}/card|token|card_id, nim, name, instansi|Membuat baris baru pada tabel card|
-|Create Terminal|POST|{server IP}:{port}/terminal|token|terminal_id, room, instansi|Membuat baris baru pada tabel terminal|
-|Edit Card|PUT|{server IP}:{port}/card/{id}|token|nim, name, instansi|Mengubah data di tabel card pada baris dengan card_id = id|
-|Edit Terminal|PUT|{server IP}:{port}/terminal/{id}|token|room, instansi|Mengubah data di tabel terminal pada baris dengan terminal_id = id|
-|Delete Card|DELETE|{server IP}:{port}/card/{id}|token||Menghapus data di tabel card pada baris dengan card_id = id|
-|Delete Terminal|DELETE|{server IP}:{port}/terminal/{id}|token||Menghapus data di tabel terminal pada baris dengan terminal_id = id|
-|Get Auth Token|POST|{server IP}:{port}/login||username, password|Mengambil token untuk autentikasi request lain, akan didapat response dari server berupa token|
+|Read Card|GET|{IP Address}/card|token||Mengambil semua data pada tabel card|
+|Read Terminal|GET|{IP Address}/terminal|token||Mengambil semua data pada tabel terminal|
+|Read Card by ID|GET|{IP Address}/card/{id}|token||Mengambil satu baris data pada tabel card dengan kolom card_id = id|
+|Read Terminal by ID|GET|{IP Address}/terminal/{id}|token||Mengambil satu baris data pada tabel terminal dengan kolom terminal_id = id|
+|Create Card|POST|{IP Address}/card|token|card_id, nim, name, instansi|Membuat baris baru pada tabel card|
+|Create Terminal|POST|{IP Address}/terminal|token|terminal_id, room, instansi|Membuat baris baru pada tabel terminal|
+|Edit Card|PUT|{IP Address}/card/{id}|token|nim, name, instansi|Mengubah data di tabel card pada baris dengan card_id = id|
+|Edit Terminal|PUT|{IP Address}/terminal/{id}|token|room, instansi|Mengubah data di tabel terminal pada baris dengan terminal_id = id|
+|Delete Card|DELETE|{IP Address}/card/{id}|token||Menghapus data di tabel card pada baris dengan card_id = id|
+|Delete Terminal|DELETE|{IP Address}/terminal/{id}|token||Menghapus data di tabel terminal pada baris dengan terminal_id = id|
+|Get Auth Token|POST|{IP Address}/login||username, password|Mengambil token untuk autentikasi request lain, akan didapat response dari server berupa token|
 
 >Semua autentikasi dilakukan dengan cara memberikan header pada setiap request dengan format 'authentication:{token}' atau 'x-access-token:{token}'
 
