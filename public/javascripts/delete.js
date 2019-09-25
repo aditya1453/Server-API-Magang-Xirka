@@ -1,3 +1,4 @@
+const config = require(path.join(__dirname,'..','config'));
 
 $(function()
 {   
@@ -9,10 +10,10 @@ $(function()
         
         $.ajax({
             type: "POST",
-            url: 'http://192.168.2.7:3000/delete',
+            url: config.ip_address+'/delete',
             data: $form.serialize(),
             success: function (response) {
-                window.location = "http://192.168.2.7:3000/view";
+                window.location = config.ip_address+"/view";
             },
             dataType: 'json' 
         });    
