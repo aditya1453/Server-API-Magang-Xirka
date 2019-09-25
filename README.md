@@ -53,15 +53,15 @@ postgres=# create database <nama database>;
 ```
 2. Buat user baru dan berikan akses penuh ke database baru yang sudah dibuat
 ```sh
-postgres=# create user <nama user> with encrypted password '<user password>';
-postgres=# grant all privileges on database <nama database> to <nama user>;
+postgres=# create user <nama database_user> with encrypted password '<database_user password>';
+postgres=# grant all privileges on database <nama database> to <nama database_user>;
 postgres=# \q
 ```
 3. Masuk ke database yang telah dibuat
->Untuk log in dengan ident based authentication dibutuhkan nama linux user yang sama dengan nama user pada postgresql, jika berbeda dapat ditambahkan dengan cara `sudo adduser <nama user>`
+>Untuk log in dengan ident based authentication dibutuhkan nama linux user yang sama dengan nama user pada postgresql, jika berbeda dapat ditambahkan dengan cara `sudo adduser <nama database_user>`
 
 ```sh
-$ sudo -i -u <nama user>
+$ sudo -i -u <nama database_user>
 $ psql <nama database>
 ```
 >kemudian akan muncul `<nama database>=#` pada terminal
@@ -92,11 +92,39 @@ $ npm install
 ```
 3. Cek settingan database pada file config.js
 
+```javascript
+module.exports = {
+  
+  // jwt secret
+  secret: 'supermegasecret',
+  
+  // login
+  username_login: 'admin',
+  password_login: 'bandung123',
+  
+  // server (Database) config  
+  user: '<database user>',
+  host: 'localhost',
+  database: '<nama database>',
+  password: '<password database>',
+  port: 5432,
+  max: 10,
+  idleTimeoutMillis: 5000, 
+  
+  // IP Address
+  ip_address:"<ip address>"
+};
+
+```
+
+4. Pada file views/login.ejs ubah ip address pada baris ke 10 menjadi "<ip address>/login"
 
 ## Run Server
+### Stand Alone Server
 Nyalakan server dengan memasukkan perintah `npm start` pada *root directory* repository ini
+
+### Background Server - dengan Package pm2
 > Untuk membuat server menyala di background, dapat digunakan perintah `nohup` ke terminal atau menggunakan modul [pm2](https://www.npmjs.com/package/pm2)
-### Penggunaan Package pm2
 - Install package dengan perintah:
 ```sh
 $ [sudo] npm install pm2 -g
