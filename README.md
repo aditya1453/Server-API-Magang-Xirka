@@ -142,7 +142,7 @@ module.exports = {
 
 ```
 
-4. Pada file views/login.ejs ubah ip address pada baris ke 10 menjadi "<ip address>/login"
+4. Pada file views/login.ejs ubah ip address pada baris ke 10 menjadi "ip_address/login"
 
 ## Run Server
 ### Stand Alone Server
