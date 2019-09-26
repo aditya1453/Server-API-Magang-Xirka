@@ -66,6 +66,7 @@ $ psql <nama database>
 ```
 >kemudian akan muncul `<nama database>=#` pada terminal
 4. Buat tabel baru dengan nama card dan terminal menggunakan format seperti [diatas](#Database-postgreSQL)
+
 ```sql
 create table card(
     card_id varchar(30) primary key,
@@ -79,6 +80,30 @@ create table terminal(
     room varchar(30) not null,
     instansi varchar(30)
 );
+
+create table client(
+    username varchar(30) primary key,
+    password varchar(30) not null,
+    name varchar(30) not null
+);
+
+```
+
+5. Untuk akses login pada mengakses frontend, perlu ditambahkan data pada tabel client. Adapun Username dan password harus sesuai dengan backend smartlock_system stand alone reader.
+
+
+```sql
+INSERT INTO client VALUES('<username>', '<password>','<username>');
+``` 
+
+Beberapa Sintax Postgres SQL 
+
+```
+Log in Database : sudo -i -u <nama database_user>
+Masuk Database  : psql <nama database>
+Show Table      : \dt
+Show Table data : SELECT * FROM <nama_table> ORDER BY <nama_field> ASC;
+quit            : \q
 ```
 
 ### Server Node.JS
@@ -139,17 +164,22 @@ Server API ini memiliki 4 fungsi utama untuk modifikasi database, fungsi-fungsi 
 ### API Request Table
 |Function|Method|URL|Header|Body|Description|
 |:----:|:----:|:-----:|:-----:|:----:|:-----:|
+|Get Auth Token|POST|{IP Address}/login||username, password|Mengambil token untuk autentikasi request lain, akan didapat response dari server berupa token|
 |Read Card|GET|{IP Address}/card|token||Mengambil semua data pada tabel card|
 |Read Terminal|GET|{IP Address}/terminal|token||Mengambil semua data pada tabel terminal|
+|Read Client|GET|{IP Address}/client|token||Mengambil semua  data pada tabel client|
 |Read Card by ID|GET|{IP Address}/card/{id}|token||Mengambil satu baris data pada tabel card dengan kolom card_id = id|
 |Read Terminal by ID|GET|{IP Address}/terminal/{id}|token||Mengambil satu baris data pada tabel terminal dengan kolom terminal_id = id|
+|Read Client|GET|{IP Address}/client/{username}|token||Mengambil satu baris data pada pada tabel client dengan kolom client=username|
 |Create Card|POST|{IP Address}/card|token|card_id, nim, name, instansi|Membuat baris baru pada tabel card|
 |Create Terminal|POST|{IP Address}/terminal|token|terminal_id, room, instansi|Membuat baris baru pada tabel terminal|
+|Create Client|POST|{IP Address}/client|token|username, password, name|Membuat baris baru pada tabel client|
 |Edit Card|PUT|{IP Address}/card/{id}|token|nim, name, instansi|Mengubah data di tabel card pada baris dengan card_id = id|
 |Edit Terminal|PUT|{IP Address}/terminal/{id}|token|room, instansi|Mengubah data di tabel terminal pada baris dengan terminal_id = id|
+|Edit CLient|PUT|{IP Address}/client/{username}|token|password, name|Mengubah data di tabel client pada baris dengan kolom client username = username|
 |Delete Card|DELETE|{IP Address}/card/{id}|token||Menghapus data di tabel card pada baris dengan card_id = id|
 |Delete Terminal|DELETE|{IP Address}/terminal/{id}|token||Menghapus data di tabel terminal pada baris dengan terminal_id = id|
-|Get Auth Token|POST|{IP Address}/login||username, password|Mengambil token untuk autentikasi request lain, akan didapat response dari server berupa token|
+|Delete Client|DELETE|{IP Address}/Client/{username}|token||Menghapus data di tabel client pada baris dengan username = username|
 
 >Semua autentikasi dilakukan dengan cara memberikan header pada setiap request dengan format 'authentication:{token}' atau 'x-access-token:{token}'
 

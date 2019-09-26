@@ -3,11 +3,11 @@ module.exports = {
   // jwt secret
   secret: 'supermegasecret',
   
-  // login
+  // ExpressJS login 
   username_login: 'admin',
   password_login: 'bandung123',
   
-  // server (Database) config  
+  // ExpressJS Database config  
   user: 'postgres_user',
   host: 'localhost',
   database: 'backendkp',
