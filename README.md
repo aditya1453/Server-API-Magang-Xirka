@@ -1,6 +1,6 @@
 
-# API Database Server SmartLog Xirka
-Repository Pekerjaan KP PT.Xirka Silicon Technology dengan Topik Website SmartLog
+# API Database Server SmartLog Xirka (Stand Alone Reader)
+Repository Pekerjaan KP PT.Xirka Silicon Technology dengan Topik Website SmartLog. 
 
 >Server API ini dibuat dengan menggunakan ExpressJS yang merupakan web framework untuk Node.JS dan menggunakan postgreSQL untuk database nya. Server ini dapat menerima HTTP request method GET, POST, PUT, dan DELETE dengan dilengkapi autentikasi menggunakan token.
 
@@ -44,6 +44,7 @@ Database dibuat menggunakan 3 tabel dengan format berikut:
 |instansi|varchar(30)|||
 
 - Tabel *client*
+
 |column|Data Type|Modifiers|Description|
 |:---:|:----:|:----:|:---:|
 |username|varchar(30)|not null|primary key|
