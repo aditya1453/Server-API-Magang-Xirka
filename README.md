@@ -25,7 +25,7 @@ $ [sudo] apt install npm
 ```
 ## Installation
 ### Database PostgreSQL
-Database dibuat menggunakan 2 tabel dengan format berikut:
+Database dibuat menggunakan 3 tabel dengan format berikut:
 - Tabel *card*
 
 |column|Data Type|Modifiers|Description|
@@ -42,6 +42,13 @@ Database dibuat menggunakan 2 tabel dengan format berikut:
 |terminal_id|varchar(30)|not null|primary key|
 |room|varchar(30)|not null||
 |instansi|varchar(30)|||
+
+- Tabel *client*
+|column|Data Type|Modifiers|Description|
+|:---:|:----:|:----:|:---:|
+|username|varchar(30)|not null|primary key|
+|password|varchar(30)|not null||
+|name|varchar(30)|not null||
 
 Penjelasan tentang tipe data di postgreSQL dapat dilihat di http://www.postgresqltutorial.com/postgresql-data-types/
 
@@ -89,7 +96,7 @@ create table client(
 
 ```
 
-5. Untuk akses login pada mengakses frontend, perlu ditambahkan data pada tabel client. Adapun Username dan password harus sesuai dengan backend smartlock_system stand alone reader.
+5. Untuk akses login pada frontend, perlu ditambahkan data pada tabel client. Adapun Username dan password harus sesuai dengan backend smartlock_system stand alone reader.
 
 
 ```sql
